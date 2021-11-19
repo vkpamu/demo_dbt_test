@@ -9,7 +9,7 @@ snowflake:
       user: VAMSHIP
       password: Leap@123
 
-      role: SYSADMIN
+      role: PUBLIC
       database: LEAP_STAGING
       warehouse: COMPUTE_WH
       schema: PUBLIC
