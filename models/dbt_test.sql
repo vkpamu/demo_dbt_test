@@ -1,7 +1,11 @@
+{{ config(materialized='incremental') }}
+-- {{ config(materialized='table') }}
+with source_data as (
+	    SELECT *
+        from dbt_test
+ )
+ select * from source_data
 
-
-
-{{ config(materialized='table') }}
 
 -- with source_data as (
 
@@ -17,10 +21,10 @@
 -- where id is not null
 
 
-select *, 
-null as source_id,
-null as batch_id
-from dbt_test
+-- select *, 
+-- null as source_id,
+-- null as batch_id
+-- from dbt_test
 
 
 -- select *, 
