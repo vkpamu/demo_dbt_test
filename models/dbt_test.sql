@@ -1,13 +1,8 @@
 
-/*
-    Welcome to your first dbt model!
-    Did you know that you can also configure models directly within SQL files?
-    This will override configurations stated in dbt_project.yml
-    Try changing "table" to "view" below config function
-*/
+
 
 {{ config(materialized='table') }}
--- {{ config(materialized='incremental') }}
+
 -- with source_data as (
 
 -- 	    select 1 as id, NULL as src_id
@@ -22,19 +17,12 @@
 -- where id is not null
 
 
-
-
 select *, 
 null as source_id,
 null as batch_id
 from dbt_test
 
--- {% if is_incremental() %}
 
---   -- this filter will only be applied on an incremental run
---   where batch_id > (select max(batch_id) from {{ this }})
-
--- {% endif %}
 -- select *, 
 -- null as source_id 
 -- from dbt_test
