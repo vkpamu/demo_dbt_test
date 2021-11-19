@@ -6,8 +6,8 @@
     Try changing "table" to "view" below config function
 */
 
--- {{ config(materialized='table') }}
-{{ config(materialized='incremental') }}
+{{ config(materialized='table') }}
+-- {{ config(materialized='incremental') }}
 -- with source_data as (
 
 -- 	    select 1 as id, NULL as src_id
@@ -19,12 +19,7 @@
 -- )
 -- select *
 -- from source_data
-
--- /*
---     Uncomment the line below to remove records with null `id` values
--- */
-
--- -- where id is not null
+-- where id is not null
 
 
 
@@ -34,12 +29,12 @@ null as source_id,
 null as batch_id
 from dbt_test
 
-{% if is_incremental() %}
+-- {% if is_incremental() %}
 
-  -- this filter will only be applied on an incremental run
-  where batch_id > (select max(batch_id) from {{ this }})
+--   -- this filter will only be applied on an incremental run
+--   where batch_id > (select max(batch_id) from {{ this }})
 
-{% endif %}
+-- {% endif %}
 -- select *, 
 -- null as source_id 
 -- from dbt_test
