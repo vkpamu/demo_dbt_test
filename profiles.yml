@@ -1,0 +1,17 @@
+snowflake:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: df61283.us-central1.gcp
+
+      # User/password auth
+      user: VAMSHIP
+      password: Leap@123
+
+      role: SYSADMIN
+      database: LEAP_STAGING
+      warehouse: COMPUTE_WH
+      schema: PUBLIC
+      threads: 10
+      client_session_keep_alive: False
