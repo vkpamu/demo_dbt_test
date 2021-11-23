@@ -27,7 +27,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 # on-run-start: "{{update_source_id('12')}}"
 # on-run-end: ["{{update_source_id()}}","{{update_batch_id()}}"]
-
+on-run-end: "{{update_source_id()}}"
 
 
 
@@ -38,6 +38,10 @@ clean-targets:         # directories to be removed by `dbt clean`
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
+   +post-hook:
+    sql: "update dbt_test SET batch_id = case when batch_id IS NULL then concat(101,'_',current_timestamp) else batch_id end ;"
+    transaction: false
+    
   demo_dbt_test:
     +materialized: table
     # Config indicated by + and applies to all files under models/example/
