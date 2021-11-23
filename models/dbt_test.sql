@@ -1,8 +1,16 @@
-{{ config(materialized='incremental') }}
+{{ config(materialized='incremental', unique_key='batch_id') }}
 select *, 
 null as source_id,
 null as batch_id
 from dbt_test
+
+
+{% if is_incremental() %}
+
+  -- this filter will only be applied on an incremental run
+  where date_day >= (select max(date_day) from {{ this }})
+
+{% endif %}
 
 -- {{ config(materialized='table') }}
 -- with source_data as (
