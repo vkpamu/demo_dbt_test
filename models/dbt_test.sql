@@ -2,7 +2,7 @@
 -- {{ config(materialized='table') }}
 with source_data as (
 	    SELECT *
-        from dbt_test
+        from {{this}}
  )
  select * from source_data
 
