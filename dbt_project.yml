@@ -26,7 +26,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 
 # on-run-start: "{{update_source_id('12')}}"
-on-run-end: ["{{update_source_id()}}","{{update_batch_id()}}"]
+# on-run-end: ["{{update_source_id()}}","{{update_batch_id()}}"]
 
 
 
