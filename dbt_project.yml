@@ -26,8 +26,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 
 # on-run-start: "alter table if exists dbt_test add column source_id number,batch_id varchar"
-on-run-end: ["{{update_source_id()}}","{{update_batch_id()}}"]
-
+# on-run-end: ["{{update_source_id()}}","{{update_batch_id()}}"]
+on-run-end: "{{update_source_id()}}" 
 
 
 
