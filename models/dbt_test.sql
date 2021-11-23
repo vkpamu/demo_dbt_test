@@ -4,7 +4,15 @@ with source_data as (
 	    SELECT *
         from {{this}}
  )
- select * from source_data
+ select *,
+     case 
+        when source_id IS NULL then 8
+    end as source_id,
+    case 
+        when batch_id IS NULL then CONCAT(source_id, '_', CURRENT_TIMESTAMP as timestamp)
+        else batch_id
+    end as batch_id
+ from source_data
 
 
 -- with source_data as (
