@@ -1,10 +1,7 @@
 {{ config(materialized='incremental') }}
 -- {{ config(materialized='table') }}
 with source_data as (
-	    SELECT *
-        from {{this}}
- )
- select *,
+	    SELECT *,
      case 
         when source_id IS NULL then 8
     end as source_id,
@@ -12,6 +9,9 @@ with source_data as (
         when batch_id IS NULL then CONCAT(source_id, '_', CURRENT_TIMESTAMP as timestamp)
         else batch_id
     end as batch_id
+        from {{this}}
+ )
+ select *
  from source_data
 
 
