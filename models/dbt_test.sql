@@ -1,7 +1,5 @@
 {{ config(materialized='incremental', unique_key='batch_id') }}
 select *, 
-null as source_id,
-null as batch_id
 from dbt_test
 
 
