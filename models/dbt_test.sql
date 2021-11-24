@@ -8,7 +8,7 @@ from dbt_test
 {% if is_incremental() %}
 
   -- this filter will only be applied on an incremental run
-  where _AIRBYTE_NORMALIZED_AT >= (select max(_AIRBYTE_NORMALIZED_AT) from {{ this }})
+  where batch_id >= (select max(batch_id) from {{ this }})
 
 {% endif %}
 
