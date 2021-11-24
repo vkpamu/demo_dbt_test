@@ -1,6 +1,6 @@
 {{ config(materialized='incremental', unique_key='batch_id') }}
 select *,
-101 as source_id::number,
+101 as source_id,
 _AIRBYTE_NORMALIZED_AT as batch_id
 from dbt_test
 
