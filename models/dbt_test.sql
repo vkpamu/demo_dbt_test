@@ -1,6 +1,5 @@
 {{ config(materialized='incremental', unique_key='batch_id') }}
-select *, 
-from dbt_test
+select * from dbt_test
 
 
 {% if is_incremental() %}
