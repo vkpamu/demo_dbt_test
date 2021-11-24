@@ -38,9 +38,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
-  post-hook:
-    - "{{update_source_id()}}"
-    - "{{update_batch_id()}}"
+#   post-hook:
+#     - "{{update_source_id()}}"
+#     - "{{update_batch_id()}}"
     # - "update dbt_test SET batch_id = case when batch_id IS NULL then current_timestamp else batch_id end ;"
     # - "update dbt_test SET source_id = case when source_id IS NULL then 101 else source_id end;"
   demo_dbt_test:
