@@ -1,11 +1,14 @@
 {{ config(materialized='incremental', unique_key='batch_id') }}
-select * from dbt_test
+select *,
+101 as source_id::number,
+_AIRBYTE_NORMALIZED_AT as batch_id
+from dbt_test
 
 
 {% if is_incremental() %}
 
   -- this filter will only be applied on an incremental run
-  where batch_id >= (select max(batch_id) from {{ this }})
+  where _AIRBYTE_NORMALIZED_AT >= (select max(_AIRBYTE_NORMALIZED_AT) from {{ this }})
 
 {% endif %}
 
