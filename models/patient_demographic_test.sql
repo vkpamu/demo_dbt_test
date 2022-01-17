@@ -1,14 +1,13 @@
-{{ config(materialized='incremental', unique_key='_AIRBYTE_NORMALIZED_AT') }}
+{{ config(materialized='incremental', unique_key='_AIRBYTE_EMMITTED_AT') }}
 select *,
-101 as source_id,
-_AIRBYTE_NORMALIZED_AT as batch_id
-from dbt_test
+_AIRBYTE_EMMITTED_AT as batch_id
+from patient_demographic_test
 
 
 {% if is_incremental() %}
 
   -- this filter will only be applied on an incremental run
-  where _AIRBYTE_NORMALIZED_AT >= (select max(_AIRBYTE_NORMALIZED_AT) from {{ this }})
+  where _AIRBYTE_EMMITTED_AT >= (select max(_AIRBYTE_EMMITTED_AT) from {{ this }})
 
 {% endif %}
 
